@@ -1,0 +1,67 @@
+$inputBgColor: white;
+$inputNoFocusColorLabel: #5d5d5d;
+$inputNoFocusColorBorder: #c4c4c4;
+$errorColor: #d32f2f;
+$primary-color: #1976d2;
+
+.textFieldWrap {
+  margin-top: 8px;
+  position: relative;
+  font-size: 18px;
+
+  .textFieldLabel {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    background-color: $inputBgColor;
+    padding: 0 3px;
+    color: $inputNoFocusColorLabel;
+    border-radius: 10px;
+  }
+
+  .textFieldInput {
+    padding: 16.5px 14px;
+    border-radius: 7px;
+    border: solid 1px $inputNoFocusColorBorder;
+
+    &:hover {
+      border-color: black;
+    }
+
+    &:focus {
+      border-color: $primary-color;
+      outline: none;
+    }
+  }
+
+  .isValue ~ .textFieldLabel {
+    top: 0;
+    left: 15px;
+    transform: translateY(-50%);
+    font-size: 14px;
+  }
+
+  .textFieldInput:focus ~ .textFieldLabel {
+    top: 0;
+    left: 15px;
+    transform: translateY(-50%);
+    color: $primary-color;
+    font-size: 14px;
+  }
+}
+
+.textFieldWrap.isError {
+  .textFieldLabel {
+    color: $errorColor;
+  }
+
+  .textFieldInput {
+    border-color: $errorColor;
+  }
+
+  .textFieldInput:focus ~ .textFieldLabel {
+    color: $errorColor;
+  }
+}

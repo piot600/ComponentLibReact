@@ -1,0 +1,111 @@
+import { useState, type ChangeEvent } from 'react';
+import {
+  Button,
+  TextField,
+  Select,
+  Checkbox,
+  Switch,
+  Modal,
+} from '@piorop/custom-components-lib';
+import '@piorop/custom-components-lib/dist/main.css';
+import './App.css';
+
+function App() {
+  const [name, setName] = useState<string>('');
+  const [surname, setSurname] = useState<string>('');
+  const [age, setAge] = useState<string>('');
+  const [open, setOpen] = useState<boolean>(false);
+  const [switchState, setSwitchState] = useState<boolean>(false);
+  const [options, setOptions] = useState<string[]>([]);
+
+  const hasSpecialChars = (value: string): boolean => /[^a-zA-Z]/.test(value);
+
+  const handleOptionChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+    setOptions((prev) =>
+      checked ? [...prev, value] : prev.filter((v) => v !== value)
+    );
+  };
+
+  return (
+    <div className="App">
+      <Button size='small' label="SMALL" />
+      <Button label="MEDIUM" />
+      <Button size='large' label="LARGE" />
+      <div>
+        <Button size='small' label="SMALL" variant='outlined' />
+        <Button label="MEDIUM" variant='outlined'/>
+        <Button size='large' label="LARGE" variant='outlined'/>
+      </div>
+      <div>
+        <Button size='small' label="SMALL" variant='text' />
+        <Button label="MEDIUM" variant='text'/>
+        <Button size='large' label="LARGE" variant='text'/>
+      </div>
+      <form>
+        <TextField
+          label="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          error={() => hasSpecialChars(name)}
+        />
+        <TextField
+          label="surname"
+          value={surname}
+          onChange={(e) => setSurname(e.target.value)}
+          error={() => hasSpecialChars(surname)}
+        />
+
+        <Select label="Age" value={age} onChange={(e) => setAge(e.target.value)}>
+          <option value="Ten">Ten</option>
+          <option value="Twenty">Twenty</option>
+          <option value="Thirty">Thirty</option>
+        </Select>
+
+        <fieldset>
+          <legend>Choose options:</legend>
+          {['option 1', 'option 2', 'option 3', 'option 4', 'option 5'].map((option) => (
+            <Checkbox
+              key={option}
+              label={option}
+              value={option}
+              onChange={handleOptionChange}
+            />
+          ))}
+        </fieldset>
+
+        <Switch
+          checked={switchState}
+          onChange={() => setSwitchState((prev) => !prev)}
+        />
+
+        <div>
+          <Button
+            type="button"
+            label="Open modal"
+            onClick={() => setOpen(true)}
+          />
+          <Modal open={open} onClose={() => setOpen(false)}>
+            <h2>Modal</h2>
+            <p>To jest treść modala</p>
+          </Modal>
+        </div>
+
+        <Button
+          label="submit"
+          variant="outlined"
+          size="small"
+          onClick={() =>
+            alert(`name: ${name}
+surname: ${surname}
+age: ${age}
+checked: ${switchState}
+selected options: ${options.join(', ')}`)
+          }
+        />
+      </form>
+    </div>
+  );
+}
+
+export default App;

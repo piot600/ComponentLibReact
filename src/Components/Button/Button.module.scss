@@ -1,0 +1,55 @@
+@use 'sass:color';
+
+$primary-color: #1976d2;
+$outlined-border: rgba(25 118 210 / 0.5);
+
+.button {
+  font-size: 13px;
+  border-radius: 6px;
+  color: $primary-color;
+  background-color: $primary-color;
+  box-sizing: border-box;
+
+  &--small {
+    padding: 4px 10px;
+    height: 30px;
+    min-width: 64px;
+  }
+
+  &--medium {
+    padding: 6px 16px;
+    height: 36px;
+    min-width: 64px;
+  }
+
+  &--large {
+    padding: 8px 22px;
+    height: 42px;
+    min-width: 64px;
+  }
+
+  &--text {
+    background-color: rgba(#1976d2, 0);
+    border: none;
+    &:hover {
+      background-color: rgba($primary-color, 0.1);
+    }
+  }
+
+  &--outlined {
+    background-color: rgba(#1976d2, 0);
+    border: solid 1px $outlined-border;
+    &:hover {
+      background-color: rgba($primary-color, 0.1);
+      border: solid 1.1px;
+    }
+  }
+
+  &--contained {
+    color: white;
+    border: none;
+    &:hover {
+      background-color: color.adjust(#1976d2, $lightness: -10%);
+    }
+  }
+}

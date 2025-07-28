@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "dist/types",
+    "rootDir": "src"
+  },
+  "exclude": [
+    "**/*.stories.tsx",
+    "**/*.stories.ts",
+    "node_modules",
+    "**/*.test.tsx",
+    "dist"
+  ]
+}
