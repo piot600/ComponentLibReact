@@ -1,5 +1,6 @@
 # ComponentLibReact
 Custom component library for React
+Contains custom: Button, Texfield, Select, Checkbox, Switch, Modal
 
 ## How to start
 
